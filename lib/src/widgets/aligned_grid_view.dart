@@ -178,7 +178,7 @@ class AlignedGridView extends BoxScrollView {
     ScrollPhysics? physics,
     bool shrinkWrap = false,
     EdgeInsetsGeometry? padding,
-    required double maxCrossAxisExtent,
+    required double crossAxisExtent,
     this.mainAxisSpacing = 0.0,
     this.crossAxisSpacing = 0.0,
     required this.itemBuilder,
@@ -192,8 +192,8 @@ class AlignedGridView extends BoxScrollView {
         ScrollViewKeyboardDismissBehavior.manual,
     String? restorationId,
     Clip clipBehavior = Clip.hardEdge,
-  })  : gridDelegate = SliverSimpleGridDelegateWithMaxCrossAxisExtent(
-          maxCrossAxisExtent: maxCrossAxisExtent,
+  })  : gridDelegate = SliverSimpleGridDelegateWithFixedCrossAxisExtent(
+          crossAxisExtent: crossAxisExtent,
         ),
         super(
           key: key,

@@ -130,3 +130,45 @@ class SliverSimpleGridDelegateWithMaxCrossAxisExtent
     return oldDelegate.maxCrossAxisExtent != maxCrossAxisExtent;
   }
 }
+
+// ignore: public_member_api_docs
+class SliverSimpleGridDelegateWithFixedCrossAxisExtent
+    extends SliverSimpleGridDelegate {
+  /// Creates a delegate that makes grid layouts with tiles that have a maximum
+  /// cross-axis extent.
+  ///
+  /// The [crossAxisExtent] argument must be greater than zero.
+  const SliverSimpleGridDelegateWithFixedCrossAxisExtent({
+    required this.crossAxisExtent,
+  }) : assert(crossAxisExtent > 0);
+
+  /// {@template fsgv.global.maxCrossAxisExtent}
+  /// The maximum extent of tiles in the cross axis.
+  ///
+  /// This delegate will select a cross-axis extent for the tiles that is as
+  /// large as possible subject to the following conditions:
+  ///
+  ///  - The extent evenly divides the cross-axis extent of the grid.
+  ///  - The extent is at most [crossAxisExtent].
+  ///
+  /// For example, if the grid is vertical, the grid is 500.0 pixels wide, and
+  /// [crossAxisExtent] is 150.0, this delegate will create a grid with 4
+  /// columns that are 125.0 pixels wide.
+  /// {@endtemplate}
+  final double crossAxisExtent;
+
+  @override
+  int getCrossAxisCount(
+    SliverConstraints constraints,
+    double crossAxisSpacing,
+  ) {
+    return constraints.crossAxisExtent ~/ (crossAxisExtent + crossAxisSpacing);
+  }
+
+  @override
+  bool shouldRelayout(
+    SliverSimpleGridDelegateWithFixedCrossAxisExtent oldDelegate,
+  ) {
+    return oldDelegate.crossAxisExtent != crossAxisExtent;
+  }
+}

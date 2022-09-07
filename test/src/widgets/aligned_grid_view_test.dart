@@ -127,7 +127,7 @@ void main() {
         child: AlignedGridView.extent(
           cacheExtent: 0,
           dragStartBehavior: DragStartBehavior.down,
-          maxCrossAxisExtent: 200,
+          crossAxisExtent: 200,
           itemBuilder: (context, index) {
             return Tile(
               index: index,
